@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using Unity.VisualScripting;
 
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] float mouseSensitivity = 3f;
     [SerializeField] float movementSpeed = 5f;
-    [SerializeField] float mass = 1f;
+    [SerializeField] float climbingSpeed = 2f;
+    [SerializeField] float mass = 2f;
     [SerializeField] float acceleration = 20f;
     public Transform cameraTransform;
 
@@ -20,12 +22,26 @@ public class PlayerMove : MonoBehaviour
     public event Action OnBeforeMove;
     public event Action<bool> OnGroundStateChange;
     internal float movementSpeedMultiplier;
+    private State _state;
+    public State CurrentState
+    {
+        get => _state;
+        set
+        {
+            _state = value;
+            velocity = Vector3.zero;
+        }
+    }
+    public enum State
+    {
+        Walking,
+        Climbing
+    }
 
     CharacterController controller;
     Vector2 look;
     internal Vector3 velocity;
     private bool wasGrounded;
-
     PlayerInput playerInput;
     InputAction moveAction, lookAction;
 
@@ -44,11 +60,22 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        UpdateGround();
-        UpdateMovement();
-        UpdateGravity();
-        UpdateLook();
+        movementSpeedMultiplier = 1f;
+        switch (CurrentState)
+        {
+            case State.Walking:
+                UpdateGround();
+                UpdateMovement();
+                UpdateGravity();
+                UpdateLook();
+                break;
+            case State.Climbing:
+                UpdateMovementClimbing();
+                UpdateLook();
+                break;
+        }
     }
+
 
     void UpdateGround()
     {
@@ -59,12 +86,13 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    Vector3 GetMovementInput()
+    Vector3 GetMovementInput(float speed, bool horizontal = true)
     {
         var moveInput = moveAction.ReadValue<Vector2>();
         var input = new Vector3();
-        input += transform.forward * moveInput.y;
-        input += transform.right * moveInput.x;
+        var referenceTransform = horizontal ? transform : cameraTransform; 
+        input += referenceTransform.forward * moveInput.y;
+        input += referenceTransform.right * moveInput.x;
         input = Vector3.ClampMagnitude(input, 1f);
         input *= movementSpeed * movementSpeedMultiplier;
         return input;
@@ -72,12 +100,47 @@ public class PlayerMove : MonoBehaviour
 
     void UpdateMovement()
     {
-        movementSpeedMultiplier = 1f;
         OnBeforeMove?.Invoke();
-        var input = GetMovementInput();
+
+        var input = GetMovementInput(movementSpeed);
+
         var factor = acceleration * Time.deltaTime;
         velocity.x = Mathf.Lerp(velocity.x, input.x, factor);
         velocity.z = Mathf.Lerp(velocity.z, input.z, factor);
+
+        controller.Move(velocity * Time.deltaTime);
+    }
+
+    void UpdateMovementClimbing()
+    {
+        var input = GetMovementInput(climbingSpeed, false);
+        var forwardInputFactor = Vector3.Dot(transform.forward, input.normalized);
+
+        if (forwardInputFactor > 0)
+        {
+            input.x = input.x * 0.5f;
+            input.y = input.z * 0.5f;
+
+            if (Mathf.Abs(input.y) > 2f)
+            {
+                input.y = Mathf.Sign(input.y) * climbingSpeed;
+                Debug.DrawLine(transform.position, transform.position + input, Color.red, 3f);
+            }
+            else
+            {
+                Debug.DrawLine(transform.position, transform.position + input, Color.yellow, 3f);
+            }
+        }
+        else
+        {
+            input.y = 0;
+            input.x = input.x * 3f;
+            input.z = input.z * 3f;
+            Debug.DrawLine(transform.position, transform.position + input, Color.green, 3f);
+        }
+
+        var factor = acceleration * Time.deltaTime;
+        velocity = Vector3.Lerp(velocity, input, factor);
 
         controller.Move(velocity * Time.deltaTime);
     }
@@ -92,12 +155,12 @@ public class PlayerMove : MonoBehaviour
     {
         var lookInput = lookAction.ReadValue<Vector2>();
 
-        look.x += lookInput.x * mouseSensitivity; 
+        look.x += lookInput.x * mouseSensitivity;
         look.y += lookInput.y * mouseSensitivity;
 
-        look.y = Mathf.Clamp(look.y, -89f, 89f); 
+        look.y = Mathf.Clamp(look.y, -89f, 89f);
 
         cameraTransform.localRotation = Quaternion.Euler(-look.y, 0, 0);
-        transform.localRotation = Quaternion.Euler(0, look.x, 0);    
+        transform.localRotation = Quaternion.Euler(0, look.x, 0);
     }
 }
