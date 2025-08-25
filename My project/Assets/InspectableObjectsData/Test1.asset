@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5cc0780f0f2fd784885ee9e2d9962501, type: 3}
-  m_Name: Test
+  m_Name: Test1
   m_EditorClassIdentifier: 
-  objectName: TestCube
+  objectName: Cube
   description: This a cube
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 436ed1895bc6d2e48b1c98cb0fa76b5f, type: 3}

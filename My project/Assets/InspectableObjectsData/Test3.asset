@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5cc0780f0f2fd784885ee9e2d9962501, type: 3}
-  m_Name: Tes2
+  m_Name: Test3
   m_EditorClassIdentifier: 
-  objectName: Capsule
-  description: This a capsule
-  icon: {fileID: 21300000, guid: 6ebbe67c5f1425243877e5a9cdf88758, type: 3}
+  objectName: Sphere
+  description: This a sphere
+  icon: {fileID: 21300000, guid: d2950ee94048a8a48be69adafe804f34, type: 3}

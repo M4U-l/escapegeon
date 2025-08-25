@@ -14,6 +14,8 @@ public class InspectUI : MonoBehaviour
     public TMP_Text descriptionText;
 
     private InspectSystem inspectSystem;
+    private InspectableObject currentObject;
+    
 
     void Start()
     {
@@ -40,6 +42,8 @@ public class InspectUI : MonoBehaviour
 
     public void OpenPanel(InspectableObject obj)
     {
+        currentObject = obj;
+
         inspectPanel.SetActive(true);
         descriptionPanel.SetActive(false);
 
@@ -58,7 +62,26 @@ public class InspectUI : MonoBehaviour
 
     void CancelInspect()
     {
-        inspectSystem.StopInspect(); // volvemos al sistema
+        if (currentObject != null)
+        {
+            if (currentObject.canBeCollected)
+            {
+                InventoryManager inventory = FindFirstObjectByType<InventoryManager>();
+                if (inventory != null)
+                {
+                    inventory.Store(currentObject);
+                    Debug.Log("Object added to inventory");
+                    // ClosePanel();
+                    inspectSystem.StopInspect();
+                }
+            }
+            else
+            {
+                inspectSystem.StopInspect();
+            }
+        }
+
+        ClosePanel();
     }
 
     public void ClosePanel()
