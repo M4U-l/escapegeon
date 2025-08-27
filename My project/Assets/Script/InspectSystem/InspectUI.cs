@@ -70,8 +70,13 @@ public class InspectUI : MonoBehaviour
                 if (inventory != null)
                 {
                     inventory.Store(currentObject);
-                    Debug.Log("Object added to inventory");
-                    // ClosePanel();
+
+                    var notification = FindFirstObjectByType<NotificationUI>();
+                    if (notification != null)
+                    {
+                        notification.ShowNotification(currentObject.data.objectName);
+                    }
+                    
                     inspectSystem.StopInspect();
                 }
             }
