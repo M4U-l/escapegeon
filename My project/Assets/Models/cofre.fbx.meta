@@ -1,59 +1,9 @@
 fileFormatVersion: 2
-guid: 700a6f127b02fe04abb97404a48fcde1
+guid: c9116f524fdba804dbc353ad0aa8412e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: botton
-    second: {fileID: 2100000, guid: feca20a552821194bb83d8fdcbe60c48, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: top
-    second: {fileID: 2100000, guid: 2d6dcc65a81fb2e46925e254052deb02, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: botton_Base_color_1001
-    second: {fileID: 2800000, guid: 8cd3ba7737f19044fb235b237fe3cf8f, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: botton_Metallic_1001
-    second: {fileID: 2800000, guid: 054f6602362924442814adeccaf491bb, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: botton_Normal_1001
-    second: {fileID: 2800000, guid: e815547f17371aa4b9f7d4a6abc356e7, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: botton_Roughness_1001
-    second: {fileID: 2800000, guid: 106394abad530794da83b1b2c426a98d, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: top_Base_color_1001
-    second: {fileID: 2800000, guid: 084908ecfac684b4ebf5abc5586d975e, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: top_Metallic_1001
-    second: {fileID: 2800000, guid: 1e35283272cde024199a30cc7abeac56, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: top_Normal_1001
-    second: {fileID: 2800000, guid: a23dbd783d4625f4b814326e3275bd8d, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: top_Roughness_1001
-    second: {fileID: 2800000, guid: fd637117e262b2f4e88034d89445f4d2, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
