@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 7589486551153348977}
   - component: {fileID: 7664536987596561936}
   - component: {fileID: 5946812929950929890}
-  m_Layer: 0
+  - component: {fileID: 2309517033781488098}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -208,6 +209,20 @@ CharacterController:
   m_SkinWidth: 0.001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2309517033781488098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201151419810129715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76bc591616f55eb4ab17b5a420145f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
 --- !u!1 &555080794440432767
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6222182858005089705}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: InspectTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7343610977986597432}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ObjectHolderTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +298,7 @@ GameObject:
   - component: {fileID: 4052721284371284673}
   - component: {fileID: 6530796702635335986}
   - component: {fileID: 1291443203458413494}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -438,7 +453,7 @@ GameObject:
   - component: {fileID: 4894780233677347617}
   - component: {fileID: 4117608580242872484}
   - component: {fileID: 2323771626250215118}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

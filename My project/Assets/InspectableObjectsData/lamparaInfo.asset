@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: lampara
   description: 'es una lampara que ohhh sirve para alumbrar las penumbras pero cuidado
-    la vela no durara muchho
+    la vela no durara mucho
 
 '
   icon: {fileID: 21300000, guid: d2950ee94048a8a48be69adafe804f34, type: 3}
