@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6043402aa4fcb9448a17a146b6a24a87
+guid: 213b48701a26b02438909265527f3da4
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: cueros
-    second: {fileID: 2100000, guid: de1ccc3613171f443bfc9ae100ad7686, type: 2}
+      name: Material
+    second: {fileID: 2100000, guid: d71e539d0475d444783a3739d85461e3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
